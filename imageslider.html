@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Image Slider</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+      background-color: #f4f4f4;
+    }
+
+    .slider-container {
+      width: 1300px;
+      height: 600px;
+      margin: auto;
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #sliderImage {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .buttons {
+      margin-top: 15px;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 10px;
+      color: blanchedalmond;
+      background-color: rgb(130, 38, 222);
+      border: none;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: rgb(100, 25, 180);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="slider-container">
+    <img id="sliderImage" src="" alt="Image Slider">
+  </div>
+  <div class="buttons">
+    <button onclick="prevImage()">Previous</button>
+    <button onclick="nextImage()">Next</button>
+  </div>
+
+  <script>
+    const imageUrls = [
+      'https://images.pexels.com/photos/381739/pexels-photo-381739.jpeg?auto=compress&cs=tinysrgb&w=600',
+      'https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg?auto=compress&cs=tinysrgb&w=600',
+      'https://images.pexels.com/photos/326055/pexels-photo-326055.jpeg?auto=compress&cs=tinysrgb&w=600',
+      'https://images.pexels.com/photos/709552/pexels-photo-709552.jpeg?auto=compress&cs=tinysrgb&w=600',
+      'https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg?auto=compress&cs=tinysrgb&w=600',
+      'https://images.pexels.com/photos/668465/pexels-photo-668465.jpeg?auto=compress&cs=tinysrgb&w=600'
+    ];
+
+    let currentIndex = 0;
+
+    const sliderImage = document.getElementById('sliderImage');
+
+    function showImage(index) {
+      sliderImage.src = imageUrls[index];
+    }
+
+    function nextImage() {
+      currentIndex = (currentIndex + 1) % imageUrls.length;
+      showImage(currentIndex);
+    }
+
+    function prevImage() {
+      currentIndex = (currentIndex - 1 + imageUrls.length) % imageUrls.length;
+      showImage(currentIndex);
+    }
+
+    // Initialize with the first image
+    showImage(currentIndex);
+  </script>
+
+</body>
+</html>
